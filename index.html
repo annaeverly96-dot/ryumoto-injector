@@ -4,391 +4,344 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="google-site-verification" content="eK7bHCr1Ze0V_08FqefWXNES6SMjpGGzMhUrLqiDy0A" />
-   <title>Ryumoto Injector — Understanding Its Role in Gaming Configuration Tools</title>
+  <title>Ryumoto Injector — Understanding Its Role in Gaming Configuration Tools</title>
   <meta name="description" content="A professional, neutral overview of Ryumoto Injector as a configuration-style injector concept, including risks, ethics, and safer official alternatives." />
 
   <style>
     :root{
-      /* Base */
-      --bg0:#050612;
-      --bg1:#070A16;
-      --text:#ECF2FF;
-      --muted:#A9B5D4;
-      --line:rgba(255,255,255,.10);
-
-      /* Premium neon brand palette */
-      --p1:#7C3AED; /* violet */
-      --p2:#22D3EE; /* cyan */
-      --p3:#F43F5E; /* rose */
-
-      --card: rgba(255,255,255,.04);
-      --card2: rgba(255,255,255,.025);
-      --shadow: 0 18px 64px rgba(0,0,0,.45);
-      --r: 18px;
+      /* ✅ Red + White (same combo like your previous design) */
+      --black:#0b0b0b;
+      --red:#e11d2e;
+      --page:#ffffff;
+      --text:#111111;
+      --muted:#444444;
+      --border:#e9e9e9;
+      --radius: 22px;
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
-      color:var(--text);
-      background:
-        radial-gradient(900px 540px at 16% 10%, rgba(124,58,237,.22), transparent 62%),
-        radial-gradient(950px 520px at 84% 16%, rgba(34,211,238,.16), transparent 58%),
-        radial-gradient(760px 420px at 70% 88%, rgba(244,63,94,.12), transparent 55%),
-        linear-gradient(180deg, #040510 0%, var(--bg0) 45%, #040510 100%);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      background: var(--page);
+      color: var(--text);
       overflow-x:hidden;
     }
 
-    /* Ambient glow */
-    .glow{
-      position:fixed;
-      inset:-26vh -32vw auto auto;
-      width:78vw;
-      height:70vh;
-      background:
-        radial-gradient(circle at 40% 40%, rgba(34,211,238,.12), transparent 62%),
-        radial-gradient(circle at 60% 60%, rgba(124,58,237,.11), transparent 58%);
-      filter: blur(46px);
-      opacity:.9;
-      pointer-events:none;
-      z-index:-1;
-      animation: float 10s ease-in-out infinite alternate;
-    }
-    @keyframes float{
-      from{transform: translate(0,0) scale(1)}
-      to{transform: translate(-3vw, 2vh) scale(1.04)}
+    /* ✅ Full width page */
+    .wrap{width:100%}
+    .container{
+      width:100%;
+      margin:0 auto;
+      padding: 0 20px;
     }
 
     a{color:inherit; text-decoration:none}
-    .container{width:min(1180px, 92vw); margin:0 auto;}
 
-    /* Header */
+    /* ✅ HEADER (same like red/white screenshot style) */
     header{
       position:sticky;
       top:0;
       z-index:50;
-      backdrop-filter: blur(14px);
-      background: linear-gradient(180deg, rgba(5,6,18,.88), rgba(5,6,18,.55));
-      border-bottom:1px solid var(--line);
+      background: var(--black);
+      border-bottom: 1px solid rgba(255,255,255,.08);
     }
     .nav{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:14px;
       padding:14px 0;
+      gap:14px;
     }
+
     .brand{
       display:flex;
       align-items:center;
-      gap:10px;
-      min-width: 260px;
+      gap:12px;
+      min-width: 240px;
     }
-    .mark{
-      width:38px;height:38px;border-radius:14px;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(34,211,238,.95), transparent 55%),
-        radial-gradient(circle at 70% 70%, rgba(124,58,237,.95), transparent 60%),
-        linear-gradient(135deg, rgba(124,58,237,.45), rgba(34,211,238,.35));
-      border:1px solid rgba(255,255,255,.14);
-      box-shadow: 0 14px 44px rgba(34,211,238,.12);
-      flex:0 0 auto;
+
+    /* ✅ LOGO in header */
+    .logoImg{
+      width:42px;
+      height:42px;
+      object-fit:cover;
+      border-radius:10px;
+      display:block;
     }
-    .brandText strong{display:block; font-size:14px; letter-spacing:.3px; line-height:1.1;}
-    .brandText span{display:block; margin-top:2px; font-size:12px; color:var(--muted);}
+
+    .brandTitle{
+      display:flex;
+      flex-direction:column;
+      line-height:1.1;
+    }
+    .brandTitle strong{
+      letter-spacing:.3px;
+      font-size: 20px;
+      font-weight:900;
+      color:#fff;
+    }
+    .brandTitle span{
+      font-size:12px;
+      color: rgba(255,255,255,.70);
+    }
 
     .navlinks{
       display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      justify-content:flex-end;
       align-items:center;
-    }
-    .chip{
-      font-size:13px;
-      color:var(--muted);
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      transition: transform .2s ease, border-color .2s ease, color .2s ease;
-    }
-    .chip:hover{
-      transform: translateY(-1px);
-      color: var(--text);
-      border-color: rgba(124,58,237,.35);
-    }
-    .cta{
-      display:inline-flex;
-      align-items:center;
-      gap:.6rem;
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background: linear-gradient(135deg, rgba(124,58,237,.30), rgba(34,211,238,.18));
-      font-weight:800;
-      font-size:13px;
-      transition: transform .2s ease, border-color .2s ease, background .2s ease;
-      white-space:nowrap;
-    }
-    .cta:hover{
-      transform: translateY(-1px);
-      border-color: rgba(34,211,238,.40);
-      background: linear-gradient(135deg, rgba(124,58,237,.38), rgba(34,211,238,.24));
-    }
-
-    /* Hero */
-    .hero{padding: 44px 0 16px;}
-    .heroGrid{
-      display:grid;
-      grid-template-columns: 1.25fr .75fr;
       gap:22px;
-      align-items:stretch;
-    }
-    .panel{
-      border-radius: var(--r);
-      border:1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      box-shadow: var(--shadow);
-      position:relative;
-      overflow:hidden;
-    }
-    .panel::before{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      background:
-        radial-gradient(740px 350px at 18% 8%, rgba(124,58,237,.22), transparent 60%),
-        radial-gradient(700px 330px at 70% 62%, rgba(34,211,238,.16), transparent 55%);
-      filter: blur(14px);
-      opacity:.85;
-      pointer-events:none;
-    }
-    .panelInner{position:relative; padding: 26px 24px;}
-
-    .badges{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:12px;}
-    .badge{
-      font-size:12px;
-      color:var(--muted);
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.09);
-      background: rgba(255,255,255,.03);
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      font-weight:800;
     }
 
-    h1{
-      margin:0;
-      font-size: clamp(28px, 3.1vw, 44px);
-      line-height:1.08;
-      letter-spacing:.2px;
+    .chip{
+      font-size:16px;
+      color:#fff;
+      padding:6px 6px;
+      border-radius:10px;
+      opacity:.95;
     }
-    .grad{
-      background: linear-gradient(90deg, var(--p1), var(--p2), var(--p3));
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-    }
-    .sub{
-      margin: 12px 0 0;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.75;
-      max-width: 78ch;
-    }
+    .chip:hover{opacity:1}
+    .chip.active{color: var(--red);}
 
-    .link{
+    /* ✅ CTA simple (same style) */
+    .cta{
+      font-size:16px;
+      color:#fff;
+      padding:6px 6px;
+      border-radius:10px;
+      opacity:.95;
       display:inline-flex;
       align-items:center;
       gap:.45rem;
-      padding:.14rem .38rem;
-      border-radius: 10px;
-      border:1px solid rgba(255,255,255,.10);
-      background: linear-gradient(90deg, rgba(124,58,237,.20), rgba(34,211,238,.14));
-      font-weight:800;
-      white-space:nowrap;
-      transition: transform .2s ease, border-color .2s ease, background .2s ease;
     }
-    .link:hover{
-      transform: translateY(-1px);
-      border-color: rgba(34,211,238,.36);
-      background: linear-gradient(90deg, rgba(124,58,237,.28), rgba(34,211,238,.20));
-    }
+    .cta:hover{opacity:1}
 
-    .actions{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-top: 18px;
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:.6rem;
-      padding: 11px 14px;
-      border-radius: 14px;
-      font-weight: 800;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.04);
-      transition: transform .2s ease, border-color .2s ease, background .2s ease;
-    }
-    .btn:hover{
-      transform: translateY(-1px);
-      border-color: rgba(124,58,237,.35);
-      background: rgba(255,255,255,.06);
-    }
-    .btnPrimary{
-      border-color: rgba(34,211,238,.25);
-      background: linear-gradient(135deg, rgba(124,58,237,.45), rgba(34,211,238,.22));
-    }
-    .btnPrimary:hover{
-      border-color: rgba(34,211,238,.45);
-      background: linear-gradient(135deg, rgba(124,58,237,.55), rgba(34,211,238,.28));
-    }
+    /* ✅ Sections spacing */
+    section{ padding: 18px 0; }
 
-    .aside{
-      border-radius: var(--r);
-      border:1px solid var(--line);
-      background:
-        radial-gradient(620px 300px at 20% 20%, rgba(244,63,94,.12), transparent 60%),
-        linear-gradient(180deg, rgba(12,18,34,.86), rgba(10,15,29,.76));
-      box-shadow: var(--shadow);
-      padding: 18px;
-      display:flex;
-      flex-direction:column;
-      gap:14px;
+    /* ✅ Title + Section headings (red border box) */
+    .titleBox{
+      width:100%;
+      border: 4px solid var(--red);
+      border-radius: 26px;
+      background:#fff;
+      padding: 18px 18px;
+      margin: 18px 0 18px;
     }
-    .stat{
-      border-radius: 14px;
-      border:1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.03);
-      padding: 14px;
-    }
-    .stat strong{display:block; font-size: 14px; letter-spacing:.2px;}
-    .stat span{display:block; margin-top: 6px; color: var(--muted); font-size: 13px; line-height: 1.6;}
-
-    /* Sections */
-    section{padding: 22px 0;}
-    .head{
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap:18px;
-      margin-bottom: 14px;
-    }
-    h2{margin:0; font-size: 22px; letter-spacing:.2px;}
-    .kicker{
+    .titleBox h1{
       margin:0;
+      font-size: 44px;
+      line-height:1.1;
+      font-weight:900;
+      color: var(--text);
+    }
+
+    .sectionTitle{
+      width:100%;
+      border: 4px solid var(--red);
+      border-radius: 26px;
+      background:#fff;
+      padding: 12px 16px;
+      margin: 26px 0 12px;
+    }
+    .sectionTitle h2{
+      margin:0;
+      font-size: 34px;
+      line-height:1.1;
+      font-weight:900;
+      color: var(--text);
+    }
+
+    /* ✅ Paragraphs */
+    p{
+      font-size: 18px;
+      line-height:1.85;
       color: var(--muted);
-      font-size: 13px;
-      line-height: 1.6;
-      max-width: 92ch;
+      margin: 0 0 18px;
+      max-width: 100%;
     }
 
-    .grid2{display:grid; grid-template-columns: 1fr 1fr; gap:16px;}
-    .card{
-      border-radius: var(--r);
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      box-shadow: 0 16px 44px rgba(0,0,0,.22);
-      padding: 18px;
+    /* ✅ Simple white cards */
+    .card, .tableWrap{
+      background:#fff;
+      border: 1px solid var(--border);
+      box-shadow:none;
+      border-radius: var(--radius);
     }
-    .card h3{margin:0 0 8px; font-size: 16px; letter-spacing:.2px;}
-    .card p{margin:0; color: var(--muted); font-size: 14px; line-height: 1.75;}
+    .card{ padding:18px; }
 
-    .list{margin: 10px 0 0; padding:0; list-style:none; display:grid; gap:10px;}
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:16px;
+    }
+
+    .card h3{
+      margin:0 0 8px;
+      font-size: 18px;
+      font-weight:900;
+      color: var(--text);
+    }
+    .card p{
+      margin:0;
+      font-size: 16px;
+      line-height:1.8;
+      color: var(--muted);
+    }
+
+    /* Lists */
+    .list{
+      margin: 10px 0 0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:10px;
+    }
     .li{
       display:flex;
       gap:10px;
       padding: 12px 12px;
       border-radius: 14px;
-      border:1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.03);
+      border:1px solid var(--border);
+      background:#fff;
     }
     .dot{
-      width:10px;height:10px;border-radius:999px;
-      margin-top:6px;
-      background: linear-gradient(180deg, var(--p2), var(--p1));
-      box-shadow: 0 10px 22px rgba(34,211,238,.10);
+      width:10px;height:10px;
+      border-radius:999px;
+      margin-top: 7px;
+      background: var(--red);
       flex:0 0 auto;
     }
-    .li strong{display:block; font-size:14px;}
-    .li span{display:block; margin-top:2px; color:var(--muted); font-size:13px; line-height:1.55;}
+    .li strong{display:block; font-size: 15px; font-weight:900; color: var(--text);}
+    .li span{display:block; margin-top:2px; color: var(--muted); font-size: 14px; line-height:1.6;}
 
-    /* Callout / Notice */
+    /* Notice */
     .notice{
-      border-radius: var(--r);
-      border:1px solid rgba(244,63,94,.28);
-      background:
-        radial-gradient(560px 260px at 18% 22%, rgba(244,63,94,.14), transparent 60%),
-        rgba(255,255,255,.03);
+      border-radius: var(--radius);
+      border:2px solid rgba(225,29,46,.30);
+      background:#fff;
       padding: 16px;
+      margin-top:14px;
     }
-    .notice strong{display:block; font-size:14px; letter-spacing:.2px;}
-    .notice p{margin:6px 0 0; color:var(--muted); font-size:13px; line-height:1.75;}
+    .notice strong{
+      display:block;
+      font-size:16px;
+      font-weight:900;
+      color: var(--text);
+    }
+    .notice p{
+      margin:6px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height:1.75;
+    }
 
     /* Table */
     .tableWrap{
       overflow:auto;
-      border-radius: var(--r);
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.02);
-      box-shadow: 0 16px 44px rgba(0,0,0,.20);
+      padding: 0;
     }
-    table{width:100%; border-collapse:collapse; min-width: 820px;}
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width: 720px;
+    }
     th, td{
-      padding: 14px;
-      border-bottom:1px solid rgba(255,255,255,.07);
-      text-align:left;
-      font-size: 13px;
+      padding: 14px 14px;
+      border-bottom:1px solid var(--border);
+      font-size: 16px;
       color: var(--muted);
-      vertical-align:top;
+      vertical-align: top;
+      text-align:left;
     }
     th{
       color: var(--text);
-      background: linear-gradient(180deg, rgba(124,58,237,.16), rgba(255,255,255,.02));
-      position:sticky;
-      top:0;
-      z-index:1;
-      letter-spacing:.2px;
+      font-weight:900;
+      background:#fff;
     }
-    td strong{color:var(--text)}
-    .pillA{
+    td strong{color: var(--text); font-weight:900;}
+
+    .pillA, .pillB{
       display:inline-flex;
-      padding:4px 9px;
+      padding: 4px 10px;
       border-radius:999px;
-      font-weight:800;
+      font-weight:900;
+      border:2px solid var(--red);
+      background:#fff;
       color: var(--text);
-      background: rgba(34,211,238,.14);
-      border:1px solid rgba(34,211,238,.25);
     }
-    .pillB{
+
+    /* ✅ Anchor text highlight (ONLY .link) */
+    .link{
+      color: var(--red);
+      font-weight: 900;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 2px;
+      padding: 0 4px;
+      border-radius: 8px;
+      background: rgba(225,29,46,.06);
+      border: 1px solid rgba(225,29,46,.22);
       display:inline-flex;
-      padding:4px 9px;
-      border-radius:999px;
-      font-weight:800;
-      color: var(--text);
-      background: rgba(244,63,94,.12);
-      border:1px solid rgba(244,63,94,.22);
+      align-items:center;
+      gap:.45rem;
+      white-space:nowrap;
     }
+    .link:hover{
+      background: rgba(225,29,46,.10);
+      border-color: rgba(225,29,46,.40);
+    }
+
+    /* Buttons (simple red border) */
+    .actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top: 14px;
+    }
+    .btn{
+      background:#fff;
+      border: 2px solid var(--red);
+      color: var(--text);
+      border-radius: 14px;
+      font-weight:900;
+      padding: 11px 14px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.6rem;
+    }
+    .btn:hover{ background: rgba(225,29,46,.06); }
 
     /* Footer */
     footer{
       margin-top: 22px;
       padding: 26px 0 34px;
-      border-top:1px solid var(--line);
-      background: linear-gradient(180deg, rgba(5,6,18,.14), rgba(5,6,18,.74));
+      border-top: 1px solid var(--border);
+      background:#fff;
     }
-    .footGrid{
+    .footerGrid{
       display:grid;
       grid-template-columns: 1.2fr .8fr;
       gap:16px;
       align-items:start;
     }
-    .footTitle{margin:0 0 8px; font-size:14px; letter-spacing:.2px;}
-    .footText{margin:0; color:var(--muted); font-size:13px; line-height:1.75; max-width: 90ch;}
+    .footTitle{
+      margin:0 0 8px;
+      font-size: 15px;
+      font-weight:900;
+      color: var(--text);
+    }
+    .footText{
+      margin:0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height:1.75;
+      max-width: 90ch;
+    }
     .social{
       display:flex;
       gap:10px;
@@ -399,112 +352,87 @@
       display:inline-flex;
       align-items:center;
       gap:.5rem;
-      padding:10px 12px;
+      padding: 10px 12px;
       border-radius: 14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      font-weight:800;
-      font-size:13px;
-      transition: transform .2s ease, border-color .2s ease;
+      border:1px solid var(--border);
+      background:#fff;
+      color: var(--text);
+      font-weight:900;
+      font-size: 14px;
     }
-    .social a:hover{transform: translateY(-1px); border-color: rgba(124,58,237,.35);}
-    .copy{margin-top:14px; color: rgba(169,181,212,.75); font-size:12px;}
+    .social a:hover{ background: rgba(225,29,46,.06); }
+
+    .copy{
+      margin-top:14px;
+      color: rgba(68,68,68,.85);
+      font-size: 13px;
+    }
 
     /* Responsive */
     @media (max-width: 920px){
-      .heroGrid{grid-template-columns:1fr}
+      .titleBox h1{font-size:32px}
+      .sectionTitle h2{font-size:26px}
+      .navlinks{gap:14px}
       .grid2{grid-template-columns:1fr}
-      .footGrid{grid-template-columns:1fr}
+      .footerGrid{grid-template-columns:1fr}
       .social{justify-content:flex-start}
+      table{min-width: 100%;}
     }
   </style>
 </head>
 
 <body>
-  <div class="glow" aria-hidden="true"></div>
-
   <!-- HEADER -->
   <header>
     <div class="container">
       <div class="nav">
         <a class="brand" href="#top" aria-label="Ryumoto Injector Home">
-          <div class="mark" aria-hidden="true"></div>
-          <div class="brandText">
+          <img class="logoImg" src="https://ryumoto-gfx.com/wp-content/uploads/2025/08/Ryomoto-GFX.webp" alt="Ryumoto Logo" />
+          <div class="brandTitle">
             <strong>Ryumoto Injector</strong>
             <span>Neutral Guide • Risks • Ethical Use</span>
           </div>
         </a>
 
         <nav class="navlinks" aria-label="Primary navigation">
+          <a class="chip active" href="#top">Home</a>
           <a class="chip" href="#what">What It Is</a>
           <a class="chip" href="#purpose">Purpose</a>
           <a class="chip" href="#capabilities">Capabilities</a>
           <a class="chip" href="#risks">Risks</a>
           <a class="chip" href="#compare">Comparison</a>
-          <a class="cta" href="#awareness">
-            Read Responsibly
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              <path d="M9 7H17V15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </a>
+          <a class="cta" href="#awareness">Read Responsibly</a>
         </nav>
       </div>
     </div>
   </header>
 
   <!-- BODY -->
-  <main id="top">
-    <!-- HERO / INTRO -->
+  <main id="top" class="wrap">
+
+    <!-- ✅ MAIN TITLE -->
     <section class="hero">
       <div class="container">
-        <div class="heroGrid">
-          <div class="panel">
-            <div class="panelInner">
-              <div class="badges">
-                <span class="badge">Professional + Neutral</span>
-                <span class="badge">Security Awareness</span>
-                <span class="badge">Fair Play Focus</span>
-              </div>
+        <div class="titleBox">
+          <h1>Ryumoto Injector — Understanding Its Role in Gaming Configuration Tools</h1>
+        </div>
 
-              <h1>
-                Ryumoto Injector:
-                <span class="grad">Understanding Its Role</span>
-                in Gaming Configuration Tools
-              </h1>
+        <div class="card">
+          <p>
+            As gaming technology evolves, players continuously search for tools that can enhance performance, customization, and control.
+            Among the many third-party utilities discussed in gaming communities, Ryumoto Injector is often mentioned as a configuration-based
+            injector tool associated with advanced gaming adjustments. Rather than being a mainstream gaming application, Ryumoto Injector is
+            generally referenced as a specialized utility that interacts with game environments at a technical level.
+            <br><br>
+            In the middle of this introduction, you can explore
+            <a class="link" href="https://ryumoto-gfx.com/" target="_blank" rel="noopener">ryumoto injector</a>
+            for broader Ryumoto-related creative and tooling context.
+          </p>
 
-              <p class="sub">
-                As gaming technology evolves, players continuously search for tools that can enhance performance, customization, and control.
-                Among the many third-party utilities discussed in gaming communities, Ryumoto Injector is often mentioned as a configuration-based
-                injector tool associated with advanced gaming adjustments. Rather than being a mainstream gaming application, Ryumoto Injector is
-                generally referenced as a specialized utility that interacts with game environments at a technical level.
-                <br><br>
-                In the middle of this introduction, you can explore
-                <a class="link" href="https://ryumoto-gfx.com/" target="_blank" rel="noopener">ryumoto injector</a>
-                for broader Ryumoto-related creative and tooling context.
-              </p>
-
-              <div class="actions">
-                <a class="btn btnPrimary" href="#risks">Jump to Risks</a>
-                <a class="btn" href="#compare">Official vs Unofficial</a>
-              </div>
-            </div>
+          <div class="actions">
+            <a class="btn" href="#risks">Jump to Risks</a>
+            <a class="btn" href="#compare">Official vs Unofficial</a>
           </div>
-
-          <aside class="aside" aria-label="Key takeaways">
-            <div class="stat">
-              <strong>What This Page Is</strong>
-              <span>A neutral overview to improve awareness and help users make safer decisions.</span>
-            </div>
-            <div class="stat">
-              <strong>What This Page Is Not</strong>
-              <span>No how-to steps for bypassing protections, cheating, or modifying online gameplay.</span>
-            </div>
-            <div class="stat">
-              <strong>Best Practice</strong>
-              <span>Prefer official settings, developer tools, and supported customization options.</span>
-            </div>
-          </aside>
         </div>
       </div>
     </section>
@@ -512,14 +440,13 @@
     <!-- WHAT IS -->
     <section id="what">
       <div class="container">
-        <div class="head">
-          <div>
-            <h2>What Is Ryumoto Injector?</h2>
-            <p class="kicker">
-              Ryumoto Injector is commonly described as a third-party injector-style utility that interacts with running gaming processes at a technical level.
-            </p>
-          </div>
+        <div class="sectionTitle">
+          <h2>What Is Ryumoto Injector?</h2>
         </div>
+
+        <p>
+          Ryumoto Injector is commonly described as a third-party injector-style utility that interacts with running gaming processes at a technical level.
+        </p>
 
         <div class="grid2">
           <div class="card">
@@ -543,14 +470,13 @@
     <!-- PURPOSE -->
     <section id="purpose">
       <div class="container">
-        <div class="head">
-          <div>
-            <h2>Purpose and Concept Behind Injector Tools</h2>
-            <p class="kicker">
-              Injector tools exist primarily for controlled testing and technical experimentation—yet can be controversial in live or competitive environments.
-            </p>
-          </div>
+        <div class="sectionTitle">
+          <h2>Purpose and Concept Behind Injector Tools</h2>
         </div>
+
+        <p>
+          Injector tools exist primarily for controlled testing and technical experimentation—yet can be controversial in live or competitive environments.
+        </p>
 
         <div class="grid2">
           <div class="card">
@@ -574,14 +500,13 @@
     <!-- CAPABILITIES -->
     <section id="capabilities">
       <div class="container">
-        <div class="head">
-          <div>
-            <h2>Commonly Discussed Capabilities</h2>
-            <p class="kicker">
-              Functionality varies by source/version. The points below stay at a high-level and should not be treated as official features of any game.
-            </p>
-          </div>
+        <div class="sectionTitle">
+          <h2>Commonly Discussed Capabilities</h2>
         </div>
+
+        <p>
+          Functionality varies by source/version. The points below stay at a high-level and should not be treated as official features of any game.
+        </p>
 
         <div class="grid2">
           <div class="card">
@@ -602,7 +527,7 @@
               Where possible, choose developer-approved customization options instead.
             </p>
 
-            <div class="notice" style="margin-top:14px;">
+            <div class="notice">
               <strong>Safety Note</strong>
               <p>
                 Avoid using unverified tools on your primary device or accounts. If you are learning technical concepts, use isolated environments and lawful,
@@ -617,14 +542,13 @@
     <!-- RISKS -->
     <section id="risks">
       <div class="container">
-        <div class="head">
-          <div>
-            <h2>Important Risks and Considerations</h2>
-            <p class="kicker">
-              Tools that inject code/configurations can create technical, security, and policy risks—especially in online or competitive games.
-            </p>
-          </div>
+        <div class="sectionTitle">
+          <h2>Important Risks and Considerations</h2>
         </div>
+
+        <p>
+          Tools that inject code/configurations can create technical, security, and policy risks—especially in online or competitive games.
+        </p>
 
         <div class="grid2">
           <div class="card">
@@ -643,7 +567,7 @@
           </div>
         </div>
 
-        <div class="notice" style="margin-top:16px;">
+        <div class="notice">
           <strong>Professional and Ethical Perspective</strong>
           <p>
             Responsible use should be limited to legitimate learning/testing in offline or private environments where permissions are clear. Using runtime-modifying
@@ -656,14 +580,13 @@
     <!-- COMPARE -->
     <section id="compare">
       <div class="container">
-        <div class="head">
-          <div>
-            <h2>Comparison With Official Customization Options</h2>
-            <p class="kicker">
-              Modern games provide strong built-in customization, making unofficial injectors unnecessary for most users.
-            </p>
-          </div>
+        <div class="sectionTitle">
+          <h2>Comparison With Official Customization Options</h2>
         </div>
+
+        <p>
+          Modern games provide strong built-in customization, making unofficial injectors unnecessary for most users.
+        </p>
 
         <div class="tableWrap" role="region" aria-label="Comparison table">
           <table>
@@ -706,17 +629,16 @@
       </div>
     </section>
 
-    <!-- AWARENESS + FUTURE -->
+    <!-- AWARENESS -->
     <section id="awareness">
       <div class="container">
-        <div class="head">
-          <div>
-            <h2>Why Awareness Matters More Than Usage</h2>
-            <p class="kicker">
-              Education helps users avoid misinformation, unrealistic expectations, and preventable security or policy outcomes.
-            </p>
-          </div>
+        <div class="sectionTitle">
+          <h2>Why Awareness Matters More Than Usage</h2>
         </div>
+
+        <p>
+          Education helps users avoid misinformation, unrealistic expectations, and preventable security or policy outcomes.
+        </p>
 
         <div class="grid2">
           <div class="card">
@@ -735,22 +657,23 @@
           </div>
         </div>
 
-        <div class="panel" style="margin-top:16px;">
-          <div class="panelInner">
-            <h2 style="margin:0 0 8px;">Conclusion</h2>
-            <p class="kicker" style="max-width: 96ch;">
-              Ryumoto Injector is best understood as a technical concept rather than a mainstream gaming solution. It exists outside official ecosystems and can carry
-              significant risks if misused. For most players, focusing on skill development, official customization features, and ethical gameplay offers a far more
-              sustainable path. Ryumoto Injector serves as a reminder that not every tool discussed online aligns with professional or safe gaming practices.
-              <br><br>
-              For an additional, relevant preview-style page experience, visit
-              <a class="link" href="https://marvelous-pixie-9fb88a.netlify.app/" target="_blank" rel="noopener">this live preview reference</a>.
-            </p>
+        <div class="card" style="margin-top:16px;">
+          <div class="sectionTitle" style="margin:0 0 12px; padding:12px 16px;">
+            <h2 style="margin:0;">Conclusion</h2>
+          </div>
 
-            <div class="actions" style="margin-top:16px;">
-              <a class="btn btnPrimary" href="#compare">Review the Comparison</a>
-              <a class="btn" href="#top">Back to Top</a>
-            </div>
+          <p style="margin-bottom:0;">
+            Ryumoto Injector is best understood as a technical concept rather than a mainstream gaming solution. It exists outside official ecosystems and can carry
+            significant risks if misused. For most players, focusing on skill development, official customization features, and ethical gameplay offers a far more
+            sustainable path. Ryumoto Injector serves as a reminder that not every tool discussed online aligns with professional or safe gaming practices.
+            <br><br>
+            For an additional, relevant preview-style page experience, visit
+            <a class="link" href="https://marvelous-pixie-9fb88a.netlify.app/" target="_blank" rel="noopener">this live preview reference</a>.
+          </p>
+
+          <div class="actions" style="margin-top:16px;">
+            <a class="btn" href="#compare">Review the Comparison</a>
+            <a class="btn" href="#top">Back to Top</a>
           </div>
         </div>
       </div>
@@ -760,7 +683,7 @@
   <!-- FOOTER -->
   <footer>
     <div class="container">
-      <div class="footGrid">
+      <div class="footerGrid">
         <div>
           <p class="footTitle">Ryumoto Injector — Awareness First</p>
           <p class="footText">
@@ -783,10 +706,8 @@
   </footer>
 
   <script>
-    // footer year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // smooth scroll for internal anchors
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener("click", (e) => {
         const href = a.getAttribute("href");
@@ -800,4 +721,3 @@
   </script>
 </body>
 </html>
-
